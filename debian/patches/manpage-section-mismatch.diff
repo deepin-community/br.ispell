@@ -1,0 +1,14 @@
+Fix manpage section for conjugue.1
+
+ -- Rafael Laboissiere <rafael@debian.org>  Tue,  1 Mar 2005 14:27:47 +0100
+
+--- br.ispell-2.4.really.3.0.beta4.orig/conjugue.1
++++ br.ispell-2.4.really.3.0.beta4/conjugue.1
+@@ -1,6 +1,6 @@
+ .\" Copyright 1995-9 Ricardo Ueda Karpischek (ueda@ime.usp.br)
+ .\"
+-.TH CONJUGUE 1.1 "18 de outubro de 1999" "br.ispell" "br.ispell"
++.TH CONJUGUE 1 "18 de outubro de 1999" "br.ispell" "br.ispell"
+ .SH NOME
+ conjugue \- conjugador de verbos da língua portuguesa
+ .SH SINOPSE

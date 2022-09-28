@@ -1,0 +1,152 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 by Joey Hess.
+#
+# This version is for a hypothetical package that builds an
+# architecture-dependant package, as well as an architecture-independent
+# package.
+
+# Modified for the Debian GNU/Linux system packages 'ibrazilian' and
+# 'brazilian-conjugate' by Carlos Laviola, with aid of rules file
+# made by the previous maintainer, Rafael Laboissiere.
+
+# Uncomment this to turn on verbose mode.
+# export DH_VERBOSE=1
+
+include /usr/share/quilt/quilt.make
+
+debdir   := $(CURDIR)/debian
+tmpdir   := $(debdir)/tmp
+usrdir   := $(tmpdir)/usr
+bindir   := $(usrdir)/bin
+
+libdir   := $(usrdir)/lib/ispell
+sharedir := $(tmpdir)/usr/share/ispell
+
+# The following rules avoid the inclusion of changed conjugue and conjugue.1
+# files in the diff.gz file, making dpkg-buildpackage reentrant
+
+savefiles = conjugue conjugue.1
+
+# These docs are ISO-8859-1, but should be released as UTF-8
+DOCS_LATIN1 = ANUNCIO CHANGELOG README TODO FAQ.i
+
+# Make sure build is always done in a reproducible and working
+# language environment
+LC_ALL=C
+export LC_ALL
+
+save-conjugue:
+	for f in $(savefiles) ; do			\
+		test -f $$f-orig || cp $$f $$f-orig ; 	\
+	done
+
+restore-conjugue:
+	for f in $(savefiles) ; do			\
+		test ! -f $$f-orig || mv $$f-orig $$f ;	\
+	done
+
+recode-manpage:
+	perl debian/latin1-troff.pl conjugue.1
+
+build:  build-arch build-indep
+build-arch: build-stamp
+build-indep: build-stamp
+build-stamp: patch save-conjugue recode-manpage recode-docs
+	dh_testdir
+
+	# Build everything besides aspell
+	$(MAKE) AWK=/usr/bin/gawk \
+		formas br.aff br.base br.ispell
+
+	# conjugue files
+	for e in UTF-8 ISO-8859-1 ; do	\
+	    cp verbos verbos-$$e ;	\
+	done
+	recode l1..utf8 verbos-UTF-8
+
+	# wordlist file
+	iconv -f ISO-8859-1 -t UTF-8 formas > brazilian
+
+	touch build-stamp
+
+recode-docs:
+	# Docs should be UTF-8
+	for doc in $(DOCS_LATIN1); do \
+		[ ! -e "$$doc.BKP" ] || exit 1; \
+		cp $$doc $$doc.BKP; \
+		recode l1..utf8 $$doc; \
+	done
+	touch $@
+
+clean: restore-conjugue unpatch
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+
+	$(MAKE) clean
+	rm -f brazilian
+
+	# Restore old latin1 docs
+	for doc in $(DOCS_LATIN1); do \
+		[ ! -e "$$doc.BKP" ] || mv -f "$$doc.BKP" "$$doc"; \
+	done
+	rm -f recode-docs
+
+	dh_clean
+
+install: DH_OPTIONS=
+install: build
+	dh_testdir
+	dh_testroot
+
+	mkdir -p $(sharedir)
+	# Add here commands to install the package into debian/ibrazilian.
+	$(MAKE) install prefix=$(usrdir) DESTDIR=$(tmpdir) \
+          MANDIR=$(usrdir)/share/man HASHDIR=$(usrdir)/lib/ispell \
+	  VDIR=/usr/lib/brazilian-conjugate AWK=/usr/bin/gawk
+	( cd $(bindir) ;						\
+	  for e in UTF-8 ISO-8859-1 ; do				\
+	      cp conjugue conjugue-$$e ;				\
+	      perl -pi -e "s|/verbos|/verbos-$$e|" conjugue-$$e ;	\
+	  done ;							\
+	  recode l1..utf8 conjugue-UTF-8 )
+	mv $(libdir)/br.aff $(libdir)/brasileiro.aff
+	rm -f $(libdir)/br.hash
+	rm -f $(libdir)/brazilian-conjugate/verbos
+        # -- Install gzipped affix compressed dictionary
+	gzip -n --best -c br.ispell > $(sharedir)/brasileiro.mwl.gz
+	install --mode=577 debian/conjugue-wrapper $(bindir)/conjugue
+	dh_install --package=ibrazilian --sourcedir=$(tmpdir)
+	dh_install --no-package=ibrazilian
+	for e in UTF-8 ISO-8859-1 ; do			\
+	    dh_link --package=brazilian-conjugate	\
+		usr/share/man/man1/conjugue.1		\
+		usr/share/man/man1/conjugue-$$e.1 ;	\
+	done
+
+# Build architecture-independent files here.
+# Pass -i to all debhelper commands in this target to reduce clutter.
+binary-indep: build install
+	dh_testdir -i
+	dh_testroot -i
+	dh_installdocs --package=wbrazilian
+	dh_installdocs -A --no-package=wbrazilian README ANUNCIO FAQ.i
+	dh_installchangelogs -i CHANGELOG
+	dh_installman -i
+	installdeb-wordlist --package=wbrazilian
+	installdeb-ispell --package=ibrazilian
+	dh_compress -i
+	dh_fixperms -i
+	dh_installdeb -i
+	dh_link -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build install
+        # Nothing to do here
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install

@@ -1,0 +1,15 @@
+Fix gawk -> awk typo in upstream Makefile
+
+ -- Rafael Laboissiere <rafael@debian.org>  Tue,  1 Mar 2005 14:27:47 +0100
+
+--- br.ispell-2.4.really.3.0.beta4.orig/Makefile
++++ br.ispell-2.4.really.3.0.beta4/Makefile
+@@ -152,7 +152,7 @@
+ # que tiverem sido especificados acima.
+ #
+ install-conjugue:
+-	sed -e 's|/usr/bin/awk|$(AWK)|g' -e \
++	sed -e 's|/usr/bin/gawk|$(AWK)|g' -e \
+ 	's|/usr/local/lib/verbos|$(VDIR)/verbos|g' conjugue >conjugue.tmp
+ 	chmod 755 conjugue.tmp
+ 	mv -f conjugue.tmp conjugue

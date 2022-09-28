@@ -1,0 +1,4 @@
+version=3
+opts="uversionmangle=s/-beta/~beta/" \
+  http://www.ime.usp.br/~ueda/br.ispell/beta.html \
+  br\.ispell-(.*)\.tar\.gz

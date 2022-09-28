@@ -1,0 +1,125 @@
+Fix usage of the "-" character either as minus or hyphen (Lintian warning)
+
+ -- Rafael Laboissiere <rafael@debian.org>  Fri, 06 Jun 2008 06:46:50 +0000
+
+Index: br.ispell-3.0~beta4/conjugue.1
+===================================================================
+--- br.ispell-3.0~beta4.orig/conjugue.1	2008-06-06 06:31:21.000000000 +0000
++++ br.ispell-3.0~beta4/conjugue.1	2008-06-06 06:35:44.000000000 +0000
+@@ -4,7 +4,7 @@
+ .SH NOME
+ conjugue \- conjugador de verbos da língua portuguesa
+ .SH SINOPSE
+-.B conjugue [-v VARIÁVEL=valor] ...
++.B conjugue [\-v VARIÁVEL=valor] ...
+ .br
+ .SH DESCRIÇÃO
+ .B conjugue
+@@ -13,10 +13,10 @@
+ verbos através de um interface iterativa ou na forma de um
+ comando simples dado no prompt do shell.
+ 
+-Pode-se passar parâmetros para o
++Pode\[hy]se passar parâmetros para o
+ .B conjugue
+ através da opção
+-.B -v
++.B \-v
+ do
+ .B awk,
+ que permite predefinir o valor de uma variável. As variáveis
+@@ -31,7 +31,7 @@
+ Path completo do arquivo onde o
+ .B conjugue
+ apenda verbos novos, que não constam ainda do banco
+-(default $HOME/.conjugue-novos).
++(default $HOME/.conjugue\-novos).
+ 
+ .TP
+ .B FORMATO
+@@ -74,7 +74,7 @@
+ .B T
+ para conjugar todos os verbos do banco. Para conjugar um verbo
+ determinado, basta entrar com esse verbo no prompt de comandos
+-(ou indicá-lo na linha de comandos como valor inicial de
++(ou indicá\[hy]lo na linha de comandos como valor inicial de
+ .B CMD
+ ).
+ 
+@@ -82,17 +82,17 @@
+ 
+ 1. Conjugar o verbo "amar" com a saída no formato muito longo:
+ 
+-$ conjugue -v FORMATO=ll -v CMD=amar
++$ conjugue \-v FORMATO=ll \-v CMD=amar
+ 
+ 2. Entrar no modo iterativo e exibe as conjugações no formato
+ muito longo:
+ 
+-$ conjugue -v FORMATO=ll
++$ conjugue \-v FORMATO=ll
+ 
+ 3. Conjugar todos os verbos do banco explicitado, gerando uma
+ lista de radicais para o br.ispell:
+ 
+-$ conjugue -v BANCO=verbos -v FORMATO=ci -v CMD=T
++$ conjugue \-v BANCO=verbos \-v FORMATO=ci \-v CMD=T
+ 
+ .SH BANCO DE VERBOS
+ 
+@@ -104,7 +104,7 @@
+ essa informação. Segue uma descrição do formato do banco de verbos:
+ 
+ .br
+-S == [a-záéíóúàèìòùçãõü]+
++S == [a\-záéíóúàèìòùçãõü]+
+ .br
+ V == Sr
+ .br
+@@ -163,7 +163,7 @@
+ 
+ .br
+ O modo com que isso vem sendo tratado é meramente conhecer de
+-antemão os tipos de alterações de radicais, e codificá-las. Até o
++antemão os tipos de alterações de radicais, e codificá\[hy]las. Até o
+ momento foi possível codificar todas as regras de modificação de
+ radicais através de variações de uma única regra, a saber, a
+ substituição da última vogal do radical ou da última vogal do
+@@ -186,7 +186,7 @@
+ 
+ .br
+ A ênclise em alguns casos provoca alteração ortográfica do verbo, como
+-por exemplo "amá-la" (amar+ela). A partir da versão 1.1 o conjugue
++por exemplo "amá\[hy]la" (amar+ela). A partir da versão 1.1 o conjugue
+ possui suporte específico para gerar algumas dessas formas, mas isso
+ só está ativo quando o formato de saída é "ci". Para maiores detalhes,
+ cheque por favor o fonte do conjugue.
+@@ -194,10 +194,10 @@
+ .SH ARQUIVOS
+ 
+ .br
+-/usr/local/lib/verbos - banco de verbos.
++/usr/local/lib/verbos \- banco de verbos.
+ 
+ .br
+-$HOME/.conjugue-novos - arquivo para apendar verbos que não
++$HOME/.conjugue-novos \- arquivo para apendar verbos que não
+ constam do banco.
+ 
+ .SH BUGS
+@@ -212,13 +212,13 @@
+ 
+ .br
+ Essa man page contém caracteres acentuados, que em alguns sistemas
+-talvez não sejam exibidos. Para visualizá-la corretamente, utilize
++talvez não sejam exibidos. Para visualizá\[hy]la corretamente, utilize
+ um fonte ISO e, se o
+ .B groff
+ estiver disponível, tente o comando
+ 
+ .br
+-$ groff -Tlatin1 -man conjugue.1|more
++$ groff \-Tlatin1 \-man conjugue.1|more
+ 
+ .SH VER TAMBÉM
+ .BR ispell (1),

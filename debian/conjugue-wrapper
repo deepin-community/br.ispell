@@ -1,0 +1,16 @@
+#!/usr/bin/perl -w
+
+# Wrapper for making the conjugue script work under UTF-8 locale charmap
+# Written by Rafael Laboissiere <rafael@debian.org>
+# This script is in the public domain
+
+my $encoding = (my @lines = `locale charmap`)[-1];
+chomp $encoding;
+my $script = "/usr/bin/conjugue-$encoding";
+if (-f $script) {
+  system ($script, @ARGV);
+} else {
+  die "Current locale charmap `$encoding' is unknown to conjugue.\n"
+    . "Accepted charmaps are UTF-8 and ISO-8859-1.\n";
+}
+

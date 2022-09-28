@@ -1,0 +1,24 @@
+ibrazilian for DEBIAN
+---------------------
+
+This package contains the ispell files for Brazilian Portuguese.  It
+is based on the br.ispell package put together by Ricardo Ueda
+Karpischek <ueda@ime.usp.br> and was debianized by Rafael Laboissiere
+<rafael@debian.org>.  The original source was obtained from:
+
+    http://www.ime.usp.br/~ueda/br.ispell
+
+This package installs brazilian.{aff,hash} as symbolic links to
+brasileiro.{aff,hash} under directory /usr/lib/ispell.
+
+To use the brazilian ispell dictionary you should invoke ispell as:
+
+        ispell -d brasileiro <file>
+or:
+        ispell -d brazilian <file>
+
+This package is compliant with the Debian Spelling Tools and Dictionaries
+Policy (package dictionaries-common).
+
+-- Rafael Laboissiere <rafael@debian.org>, Mon Sep 29 22:21:54 CEST 2003
+

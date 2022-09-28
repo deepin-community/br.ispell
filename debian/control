@@ -1,0 +1,54 @@
+Source: br.ispell
+Section: text
+Priority: optional
+Maintainer: Agustin Martin Domingo <agmartin@debian.org>
+Build-Depends: gawk,
+	       debhelper-compat (= 12),
+	       ispell,
+	       recode,
+	       dictionaries-common-dev (>= 1.23.2),
+	       quilt
+Homepage: https://www.ime.usp.br/~ueda/br.ispell/
+Vcs-Git: https://salsa.debian.org/debian/br.ispell.git
+Vcs-Browser: https://salsa.debian.org/debian/br.ispell
+Standards-Version: 4.2.1
+
+Package: ibrazilian
+Architecture: all
+Provides: ispell-dictionary
+Depends: ${misc:Depends},
+	 debconf | debconf-2.0,
+	 ${ispell:Depends}
+Suggests: brazilian-conjugate
+Description: Brazilian Portuguese dictionary for ispell
+ This is the Brazilian Portuguese dictionary for ispell as put together by
+ Ricardo Ueda Karpischek <ueda@ime.usp.br>.
+ .
+ Current status is good enough to be used for daily needs. This dictionary
+ is being developed in a structured way. Verbs are treated apart by a
+ specific software, a verb conjugator (conjugue). Names are partitioned
+ into semantic classes to make vocabulary completion and revision easier.
+
+Package: brazilian-conjugate
+Architecture: all
+Suggests: ibrazilian
+Depends: ${misc:Depends},
+	 gawk
+Multi-Arch: foreign
+Description: Brazilian Portuguese verb conjugator
+ This package contains a interactive program (conjugue) capable of
+ conjugating Portuguese verbs, as spoken in Brazil.  The upstream version
+ is numbered 1.0, but as it is distributed together with the Ispell
+ dictionary for Brazilian Portuguese, it has the same version number as the
+ ibrazilian package for Debian.
+
+Package: wbrazilian
+Architecture: all
+Depends: ${misc:Depends},
+	 debconf | debconf-2.0,
+	 ${wordlist:Depends}
+Provides: wordlist
+Description: Brazilian Portuguese wordlist
+ This package provides the file /usr/share/dict/brazilian containing a
+ list of Portuguese words with Brazilian spellings. It was obtained
+ from the br.ispell dictionary developed by Ricardo Ueda Karpischek.

@@ -1,0 +1,11 @@
+Language: portugues brasileiro (Brazilian Portuguese)
+Hash-Name: brasileiro
+Emacsen-Name: brasileiro
+Casechars: [a-záéíóúàèìòùãõçüâêôA-ZÁÉÍÓÚÀÈÌÒÙÃÕÇÜÂÊÔ]
+Not-Casechars: [^a-záéíóúàèìòùãõçüâêôA-ZÁÉÍÓÚÀÈÌÒÙÃÕÇÜÂÊÔ]
+Otherchars: [---']
+Many-Otherchars: yes
+Additionalchars: áéíóúàèìòùãõçüâêôÁÉÍÓÚÀÈÌÒÙÃÕÇÜÂÊÔ
+Coding-System: iso-8859-1
+Locale: pt_BR
+Auto-Compat: brasileiro

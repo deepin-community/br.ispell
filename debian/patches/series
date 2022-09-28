@@ -1,0 +1,7 @@
+destdir-install.diff
+awk-gawk-typo.diff
+manpage-section-mismatch.diff
+utf8-support.diff
+conjugations.diff
+hyphen-minus-sign.diff
+#conjugations+adequar.diff

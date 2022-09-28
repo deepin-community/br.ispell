@@ -1,0 +1,16 @@
+brazilian-conjugate for DEBIAN
+------------------------------
+
+This package contains a interactive verb conjugator for Brazilian
+Portuguese (conjugue) and its associated database.  It is distributed
+together with the Ispell dictionary for Brazilian Portuguese, put together
+by Ricardo Ueda Karpischek <ueda@ime.usp.br> and was debianized by Rafael
+Laboissiere <rafael@debian.org>.  The original source was obtained from
+
+    http://www.ime.usp.br/~ueda/br.ispell
+
+ -- Rafael Laboissiere <rafael@debian.org>, Mon Sep 29 22:30:23 CEST 2003
+
+
+
+

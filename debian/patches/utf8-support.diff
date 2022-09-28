@@ -1,0 +1,69 @@
+Add UTF-8 support to affix file
+
+ -- Rafael Laboissiere <rafael@debian.org>  Fri, 21 Sep 2007 16:21:40 +0200
+
+--- br.ispell-3.0~beta4.orig/br.aff.nv
++++ br.ispell-3.0~beta4/br.aff.nv
+@@ -9,7 +9,61 @@
+ 
+ boundarychars '
+ 
+-wordchars [a-záéíóúàèìòùãõçüâêô] [A-ZÁÉÍÓÚÀÈÌÒÙÃÕÇÜÂÊÔ]
++wordchars [a-z] [A-Z]
++stringchar	á	Á
++stringchar	é	É
++stringchar	í	Í
++stringchar	ó	Ó
++stringchar	ú	Ú
++stringchar	à	À
++stringchar	è	È
++stringchar	ì	Ì
++stringchar	ò	Ò
++stringchar	ù	Ù
++stringchar	ã	Ã
++stringchar	õ	Õ
++stringchar	ç	Ç
++stringchar	ü	Ü
++stringchar	â	Â
++stringchar	ê	Ê
++stringchar	ô	Ô
++
++altstringtype "utf8" "tex" ".txt"
++
++altstringchar	\303\241	á
++altstringchar	\303\251	é
++altstringchar	\303\255	í
++altstringchar	\303\263	ó
++altstringchar	\303\272	ú
++altstringchar	\303\240	à
++altstringchar	\303\250	è
++altstringchar	\303\254	ì
++altstringchar	\303\262	ò
++altstringchar	\303\271	ù
++altstringchar	\303\243	ã
++altstringchar	\303\265	õ
++altstringchar	\303\247	ç
++altstringchar	\303\274	ü
++altstringchar	\303\242	â
++altstringchar	\303\252	ê
++altstringchar	\303\264	ô
++altstringchar	\303\201	Á
++altstringchar	\303\211	É
++altstringchar	\303\215	Í
++altstringchar	\303\223	Ó
++altstringchar	\303\232	Ú
++altstringchar	\303\200	À
++altstringchar	\303\210	È
++altstringchar	\303\214	Ì
++altstringchar	\303\222	Ò
++altstringchar	\303\231	Ù
++altstringchar	\303\203	Ã
++altstringchar	\303\225	Õ
++altstringchar	\303\207	Ç
++altstringchar	\303\234	Ü
++altstringchar	\303\202	Â
++altstringchar	\303\212	Ê
++altstringchar	\303\224	Ô
+ 
+ altstringtype "tex" "tex" ".tex" ".bib"
+ 

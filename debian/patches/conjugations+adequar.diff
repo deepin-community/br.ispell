@@ -1,0 +1,63 @@
+This tries to fix conjugation of adequar, but is not yet working and cause errors
+when result is used to build the hash. We keep it in a separate patch until
+someone fixes it and can be merged into normal conjugations.diff.
+
+-- 
+Agustin
+
+diff -Naur --exclude=.git --exclude='*.diff' br.ispell.orig/conjugue br.ispell/conjugue
+--- br.ispell.orig/conjugue	2009-11-20 10:49:30.000000000 +0100
++++ br.ispell/conjugue	2009-11-20 10:49:49.000000000 +0100
+@@ -453,6 +453,12 @@
+         ((y1 == "ó") && (pm "o" rm u == r)))
+             t[j] = r substr(t[j],l) "7"
+ 
++        # regra 8:
++        #     de equ para équ ou éqü (adequar > adéqüe)
++        else if ((m > 0) &&
++        ((y1 == "é") && ((u == "u" || u == "ü") && (pm "e" rm "u" == r))))
++            t[j] = r substr(t[j],l) "8"
++
+         # todas as regras conhecidas falharam
+         else if ((t[j] != "") && (substr(t[j],1,l) != substr(r,1,l)))
+             print "vogal não normalizada: w=" w ", y=" y " (" r ":" t[j] ")"
+@@ -564,6 +570,12 @@
+             else
+                 print "vogal " v " inválida para regra " f " e radical " r
+         }
++        if (f == "8") {
++            if (pen_vog == "e")
++                r = substr(r,1,pen_ind-1) "é" substr(r,pen_ind+1)
++            else
++                print "vogal " v " inválida para regra " f " e radical " r
++        }
+     }
+     return(r)
+ }
+@@ -1816,7 +1828,7 @@
+     if ((FORMATO !~ /^(c|aa|b)/) && (CMD == "")) {
+         print "aguarde o término da leitura do banco..."
+     }
+-    carrega_banco((BANCO=="") ? "/usr/lib/brazilian-conjugate/verbos" : BANCO)
++    carrega_banco((BANCO=="") ? "/usr/local/lib/verbos" : BANCO)
+ 
+     # prompt
+     if (FORMATO ~ /^(c|aa|b)/)
+diff -Naur --exclude=.git --exclude='*.diff' br.ispell.orig/verbos br.ispell/verbos
+--- br.ispell.orig/verbos	2009-11-20 10:49:30.000000000 +0100
++++ br.ispell/verbos	2009-11-20 10:49:49.000000000 +0100
+@@ -1551,10 +1551,10 @@
+ #
+ paradigma:adequar
+ EI:adeqüei:adequaste:adequou:adequamos:adequastes:adequaram
+-PI::::adequamos:adequais:
+-PS::::adeqüemos:adeqüeis:
+-IA:::adeqüemos:adequai:
+-IN:::adeqüemos:adeqüeis:
++PI:adéquo:adéquas:adéqua:adequamos:adequais:adequam
++PS:adéqüe:adéqües:adéqüe:adeqüemos:adeqüeis:adéqüem
++IA:adéqua:adéqüe:adeqüemos:adequai:adéqüem
++IN:adéqües:adéqüe:adeqüemos:adeqüeis:adéqüem
+ 
+ #
+ # Reaver conjuga-se como haver, mas apenas nas formas onde existe

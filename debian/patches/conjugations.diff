@@ -1,0 +1,259 @@
+Fix conjugation of several verbs, thanks to Jakson Alves de Aquino
+(closes Bug#482573) 
+
+ -- Rafael Laboissiere <rafael@debian.org>  Wed, 04 Jun 2008 23:21:40 +0200
+
+Index: br.ispell-3.0~beta4/verbos
+===================================================================
+--- br.ispell-3.0~beta4.orig/verbos	2008-06-06 17:42:12.000000000 +0200
++++ br.ispell-3.0~beta4/verbos	2008-06-06 17:46:16.000000000 +0200
+@@ -90,6 +90,33 @@
+ vigiar
+ 
+ #
++# intermediar
++#
++paradigma:intermediar:intermediar
++PI:intermedeio:intermedeias:intermedeia:intermediamos:intermediais:intermedeiam
++PS:intermedeie:intermedeies:intermedeie:intermediemos:intermedieis:intermedeiem:
++IA:intermedeia:intermedeie:intermediemos:intermediai:intermedeiem:
++IN:intermedeies:intermedeie:intermediemos:intermedieis:intermedeiem:
++
++#
++# faiscar
++#
++paradigma:faiscar:faiscar
++PI:faísco:faíscas:faísca:faiscamos:faiscais:faíscam
++PS:faísque:faísques:faísque:faisquemos:faisqueis:faisquem:faísquem
++IA:faísca:faísque:faisquemos:faiscai:faísquem
++IN:faísques:faísque:faisquemos:faisqueis:faísquem
++
++#
++# esmiuçar
++#
++paradigma:esmiuçar:esmiuçar
++PI:esmiúço:esmiúças:esmiúça:esmiuçamos:esmiuçais:esmiúçam
++PS:esmiúce:esmiúces:esmiúce:esmiucemos:esmiuceis:esmiúcem
++IA:esmiúça:esmiúce:esmiucemos:esmiuçai:esmiúcem
++IN:esmiúces:esmiúce:esmiucemos:esmiuceis:esmiúcem
++
++#
+ # apoiar é regular mas tem acentuação gráfica específica.
+ #
+ paradigma:apoiar:oiar
+@@ -375,6 +402,7 @@
+ PI:enviúvo:enviúvas:enviúva:enviuvamos:enviuvais:enviúvam
+ PS:enviúve:enviúves:enviúve:enviuvemos:enviuveis:enviúvem
+ IA:enviúva:enviúve:enviuvemos:enviuvai:enviúvem
++IN:enviúves:enviúve:enviuvemos:enviuveis:enviúvem
+ #
+ # Seguem esse modelo:
+ #
+@@ -409,6 +437,13 @@
+ desenraizar
+ 
+ #
++# estrear
++#
++paradigma:estrear:estrear
++IA:estréia:estréie:estreemos:estreai:estréiem
++IN:estréies:estréie:estreemos:estreeis:estréiem
++
++#
+ # Verbos terminados em ear recebem "i" depois do "e" nas formas
+ # rizotônicas.
+ #
+@@ -465,7 +500,7 @@
+ # mobiliar
+ #
+ paradigma:mobiliar
+-PI:mobílio:mobílias:mobília:mobiliamos:mobilias:mobíliam
++PI:mobílio:mobílias:mobília:mobiliamos:mobiliais:mobíliam
+ PS:mobílie:mobílies:mobílie:mobiliemos:mobilieis:mobíliem
+ IA:mobília:mobílie:mobilemos:mobiliai:mobíliem
+ IN:mobílies:mobílie:mobilemos:mobilieis:mobíliem
+@@ -574,7 +609,7 @@
+ PI:musco:muscas:musca:moscamos:moscais:muscam
+ PS:musque:musques:musque:mosquemos:mosqueis:musquem
+ IN:mosques:mosque:mosquemos:mosqueis:mosquem
+-IA:mosca:mosque:mosquemos:moscai:mosquem
++IA:musca:musque:mosquemos:moscai:musquem
+ EI:mosquei:moscaste:moscou:moscamos:moscastes:moscaram
+ 
+ #
+@@ -1492,10 +1527,10 @@
+ enxaguar
+ 
+ paradigma:apaziguar:iguar
+-EI:apazigüei:apaziguaste:apaziguou:apaziguamos:apaziguastes:apaziguou
++EI:apazigüei:apaziguaste:apaziguou:apaziguamos:apaziguastes:apaziguaram
+ PS:apazigúe:apazigúes:apazigúe:apazigüemos:apazigüeis:apazigúem
+ IA:apazigua:apazigúe:apazigüemos:apaziguai:apazigúem
+-# IN:apaziguas:apazigua:apaziguamos:apaziguais:apaziguam
++IN:apazigúes:apazigúe:apazigüemos:apazigüeis:apazigúem
+ averiguar
+ 
+ #
+@@ -1784,7 +1819,6 @@
+ atirar
+ ativar
+ atolar
+-atraicionar
+ atrelar
+ atribular
+ aureolar
+@@ -1834,11 +1868,9 @@
+ casar
+ castrar
+ catalisar
+-catalizar
+ catar
+ cavalgar
+ cavar
+-cavocar
+ ceder
+ celebrar
+ centralizar
+@@ -2036,7 +2068,6 @@
+ esticar
+ estornar
+ estragar
+-estrear
+ estrelar
+ estudar
+ estuprar
+@@ -2079,7 +2110,6 @@
+ fotografar
+ # frigir
+ fritar
+-fujir
+ fumar
+ fundir
+ furar
+@@ -2339,7 +2369,6 @@
+ separar
+ seqüestrar
+ serenar
+-serenizar
+ serrar
+ simpatizar
+ simular
+@@ -3363,7 +3392,6 @@
+ esmaltar
+ esmerar
+ esmigalhar
+-esmiuçar
+ esmolar
+ esnobar
+ espaçar
+@@ -3456,7 +3484,6 @@
+ extravasar
+ extraviar
+ facultar
+-faiscar
+ falecer
+ falsear
+ falsificar
+@@ -4351,9 +4378,7 @@
+ contribuir
+ conversar
+ convidar
+-convier
+ coordenar
+-corredimir
+ cumprir
+ datar
+ decidir
+@@ -4824,7 +4849,6 @@
+ estocar
+ estrondear
+ esvanecer
+-exconjurar
+ excretar
+ # excusar  não é verbo
+ expectorar
+@@ -4917,7 +4941,6 @@
+ sobressaltar
+ socorrer
+ soldar
+-sossobrar
+ sovar
+ subdividir
+ subsistir
+@@ -5062,7 +5085,6 @@
+ drogar
+ encolher
+ fraudar
+-indefinir
+ inteirar
+ invalidar
+ priorizar
+@@ -5092,7 +5114,6 @@
+ incidir
+ inexistir
+ internar
+-interrelacionar
+ linearizar
+ maneirar
+ marginalizar
+@@ -5282,7 +5303,6 @@
+ refluir
+ refregar
+ reincidir
+-remansar
+ rematar
+ repontar
+ repugnar
+Index: br.ispell-3.0~beta4/conjugue
+===================================================================
+--- br.ispell-3.0~beta4.orig/conjugue	2008-06-06 17:42:12.000000000 +0200
++++ br.ispell-3.0~beta4/conjugue	2008-06-06 17:42:15.000000000 +0200
+@@ -148,11 +148,16 @@
+ FV["chegar"]     = "o"
+ FV["odiar"]      = "o"
+ FV["apaziguar"]  = "o"
++FV["estrear"]    = "o"
+ 
+ FV["cegar"]      = "p"
+ FV["mobiliar"]   = "p"
+ FV["adequar"]    = "p"
+ 
++FV["intermediar"] = "q"
++FV["faiscar"] = "q"
++FV["esmiuçar"] = "q"
++
+ #
+ # paradigmas não caracterizáveis por três letras: crer
+ #
+@@ -412,10 +417,12 @@
+         # última vogal
+         #     de a para á (haver > há)
+         #     de o para ó (apoiar > apóio)
++        #     de u para ú (esmiuçar > esmiúce)
+         # e verifique se se obtém o radical (a menos da última letra).
+         else if ((k > 0) &&
+         (((y == "á") && (pk "a" rk u == r)) ||
+-        ((y == "ó") && (pk "o" rk u == r))))
++        ((y == "ó") && (pk "o" rk u == r)) ||
++        ((y == "ú") && (pk "u" rk u == r))))
+             t[j] = r substr(t[j],l) "3"
+ 
+         # regra 4: desconsidere a última letra do radical e substitua a
+@@ -534,6 +541,8 @@
+                 r = substr(r,1,i-1) "á" substr(r,i+1)
+             else if (v == "o")
+                 r = substr(r,1,i-1) "ó" substr(r,i+1)
++            else if (v == "u")
++                r = substr(r,1,i-1) "ú" substr(r,i+1)
+             else
+                 print "vogal " v " inválida para regra " f " e radical " r
+         }
+@@ -1807,7 +1816,7 @@
+     if ((FORMATO !~ /^(c|aa|b)/) && (CMD == "")) {
+         print "aguarde o término da leitura do banco..."
+     }
+-    carrega_banco((BANCO=="") ? "/usr/local/lib/verbos" : BANCO)
++    carrega_banco((BANCO=="") ? "/usr/lib/brazilian-conjugate/verbos" : BANCO)
+ 
+     # prompt
+     if (FORMATO ~ /^(c|aa|b)/)

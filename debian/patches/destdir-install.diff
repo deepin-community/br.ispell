@@ -1,0 +1,17 @@
+Add DESTDIR prefix for relocatable installation of verbos directory.
+
+ -- Rafael Laboissiere <rafael@debian.org>  Tue,  1 Mar 2005 14:27:47 +0100
+
+--- br.ispell-2.4.really.3.0.beta4.orig/Makefile
++++ br.ispell-2.4.really.3.0.beta4/Makefile
+@@ -162,8 +162,8 @@
+ 	touch conjugue-stamp
+ 	install -d $(BINDIR)
+ 	install --mode=755 conjugue $(BINDIR)/conjugue
+-	install -d $(VDIR)
+-	install --mode=644 verbos $(VDIR)/verbos
++	install -d $(DESTDIR)$(VDIR)
++	install --mode=644 verbos $(DESTDIR)$(VDIR)/verbos
+ 	install -d $(MANDIR)/man1
+ 	install --mode=644 conjugue.1 $(MANDIR)/man1/conjugue.1
+ 

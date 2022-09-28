@@ -1,0 +1,3 @@
+conjugue.1				usr/share/man/man1
+verbos-*				usr/lib/brazilian-conjugate
+debian/tmp/usr/bin/conjugue*		usr/bin
